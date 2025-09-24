@@ -1,182 +1,300 @@
 # Fish Shell Configuration
 
-This directory contains the complete Fish shell configuration with all development tools properly integrated.
+Complete Fish shell configuration with development tools, tmux integration, and utility functions.
 
-## Features
+## 🚀 Features
 
 - **Fish Shell 3.3.1**: Modern, user-friendly command line shell
-- **Full Development Environment**: All tools accessible from Fish shell
+- **Full Development Environment**: Python, Node.js, Mojo tools integrated
+- **Tmux Integration**: Complete set of tmux management functions
+- **Utility Functions**: Development and system helper functions
 - **Auto-completions**: Enhanced command line experience with intelligent suggestions
-- **Custom Functions**: Useful functions for development workflow
+- **WSL Optimized**: Special configurations for Windows Subsystem for Linux
 
-## Integrated Tools
+## 📦 Dependencies
 
-### Python Environment
-- **Python 3.11.4** (via Miniconda)
-- **Miniconda 23.5.2** at `~/miniconda3`
-- **UV 0.3.5** - Fast Python package installer
-- **pip/pip3** - Traditional Python package manager
-- **conda** - Environment and package management
+### Required
+- **fish** (3.0+) - The shell itself
+- **tmux** - For terminal multiplexing
+- **fzf** - Fuzzy finder for interactive selection
 
-### Node.js Environment
-- **Node.js v18.20.3** (via NVM)
-- **npm 10.7.0** - Node package manager
-- Path: `~/.nvm/versions/node/v18.20.3/bin`
+### Optional but Recommended
+- **ripgrep** (`rg`) - Better grep alternative
+- **fd** - Better find alternative
+- **bat** - Better cat with syntax highlighting
 
-### Mojo/Modular
-- **Modular CLI** configured at `~/.modular`
-- **Mojo** programming language support
-- Automatic Python library detection for Mojo integration
+Install dependencies:
+```bash
+sudo apt update
+sudo apt install -y fish tmux fzf ripgrep fd-find bat
+```
 
 ## Installation
 
-### 1. Install Fish Shell
+### Quick Install
 ```bash
-sudo apt update
-sudo apt install -y fish
+cd ~/devenv/fish_setup
+./install.sh
 ```
 
-### 2. Restore Configuration
+### Manual Installation
 ```bash
 # Create Fish config directory
-mkdir -p ~/.config/fish
+mkdir -p ~/.config/fish/functions
 
-# Copy all configuration files
-cp -r ./config.fish ~/.config/fish/
-cp -r ./functions ~/.config/fish/
-cp -r ./conf.d ~/.config/fish/
-cp -r ./completions ~/.config/fish/
+# Copy configuration
+cp config.fish ~/.config/fish/
+cp -r functions/* ~/.config/fish/functions/
+cp -r conf.d ~/.config/fish/
 ```
 
-### 3. Initialize Conda for Fish
+### Set as Default Shell
 ```bash
-# If conda is already installed
-conda init fish
-```
-
-### 4. Set Fish as Default Shell (Optional)
-```bash
-# Add Fish to valid shells if not already added
+# Add Fish to valid shells
 echo /usr/bin/fish | sudo tee -a /etc/shells
 
 # Change default shell
 chsh -s /usr/bin/fish
 ```
 
-## Configuration Files
+## 🎯 Essential Functions & Commands
 
-### `config.fish`
-Main configuration file containing:
-- PATH configurations for all tools
-- Environment variables (MODULAR_HOME, EDITOR, etc.)
-- Conda initialization
-- Custom abbreviations and aliases
-- Color settings
+### Tmux Management Functions
+| Command | Description | Usage Example |
+|---------|-------------|---------------|
+| `t` | Smart attach/create session | `t` |
+| `tn` | Create new named session | `tn project` |
+| `tk` | Kill session with FZF preview | `tk` or `tk name` |
+| `tl` | List all sessions | `tl` |
+| `ts` | Switch sessions with FZF | `ts` |
+| `tinfo` | Detailed session overview | `tinfo` |
+| `tka` | Kill ALL sessions (confirms) | `tka` |
+| `tr` | Rename current session | `tr newname` |
+| `tm` | Interactive session manager | `tm` |
 
-### `functions/find_python_for_mojo.fish`
-Custom function to detect and set Python library for Mojo:
-- Automatically finds Python shared library
-- Sets `MOJO_PYTHON_LIBRARY` environment variable
-- Runs on shell startup
+### Development Functions
+| Command | Description | Usage Example |
+|---------|-------------|---------------|
+| `gitlog` | Beautiful git history graph | `gitlog` |
+| `ports` | Show listening ports | `ports` or `ports 3000` |
+| `extract` | Universal archive extractor | `extract file.tar.gz` |
 
-### `conf.d/nvm.fish`
-NVM configuration for Fish:
-- Adds Node.js to PATH
-- Sets NVM_DIR environment variable
+### System Utility Functions
+| Command | Description | Usage Example |
+|---------|-------------|---------------|
+| `backup` | Create timestamped backup | `backup important.conf` |
+| `clean` | Clean system cache/temp | `clean` |
+| `update` | Update system packages | `update` |
 
-## Custom Abbreviations
+## 📝 Built-in Abbreviations
 
-| Abbreviation | Command | Description |
-|--------------|---------|-------------|
-| `ll` | `ls -lah` | List all files with details |
+| Abbreviation | Expands To | Description |
+|--------------|------------|-------------|
+| `ll` | `ls -lah` | List all with details |
 | `la` | `ls -A` | List all files |
-| `l` | `ls -CF` | List files with indicators |
+| `l` | `ls -CF` | List with indicators |
 | `..` | `cd ..` | Go up one directory |
 | `...` | `cd ../..` | Go up two directories |
 | `g` | `git` | Git shorthand |
 | `gs` | `git status` | Git status |
+| `ga` | `git add` | Git add |
 | `gc` | `git commit` | Git commit |
 | `gp` | `git push` | Git push |
-| `gl` | `git log --oneline` | Git log one-line |
+| `gl` | `git log --oneline` | Git log compact |
+| `gd` | `git diff` | Git diff |
+| `gb` | `git branch` | Git branches |
+| `gco` | `git checkout` | Git checkout |
 | `py` | `python3` | Python shorthand |
 | `ipy` | `ipython` | IPython shorthand |
+| `vim` | `nvim` | Use Neovim |
+| `vi` | `nvim` | Use Neovim |
+| `v` | `nvim` | Quick Neovim |
 
-## Environment Variables
+## 🔧 Integrated Development Tools
+
+### Python Environment (via Miniconda)
+- **Python 3.11.4**
+- **pip/pip3** - Package manager
+- **conda** - Environment management
+- **uv** - Fast Python package installer
+
+### Node.js Environment (via NVM)
+- **Node.js v18.20.3**
+- **npm 10.7.0** - Package manager
+
+### Mojo/Modular
+- **Modular CLI** at `~/.modular`
+- **Mojo** programming language
+- Auto-detection of Python libraries
+
+## 🌐 Environment Variables
 
 | Variable | Value | Purpose |
 |----------|-------|---------|
-| `MODULAR_HOME` | `~/.modular` | Modular installation directory |
-| `MOJO_PYTHON_LIBRARY` | Auto-detected | Python library for Mojo |
 | `EDITOR` | `nvim` | Default text editor |
 | `VISUAL` | `nvim` | Visual editor |
-| `NVM_DIR` | `~/.nvm` | NVM installation directory |
+| `MODULAR_HOME` | `~/.modular` | Modular installation |
+| `MOJO_PYTHON_LIBRARY` | Auto-detected | Python library for Mojo |
+| `NVM_DIR` | `~/.nvm` | NVM installation |
+| `FZF_DEFAULT_OPTS` | Catppuccin theme | FZF appearance |
 
-## Testing the Installation
+## 📁 Directory Structure
 
-After installation, test all tools:
+```
+fish_setup/
+├── config.fish         # Main configuration
+├── functions/          # Custom functions
+│   ├── tmux/          # Tmux functions
+│   │   ├── t.fish
+│   │   ├── tn.fish
+│   │   ├── tk.fish
+│   │   ├── tl.fish
+│   │   ├── ts.fish
+│   │   ├── tinfo.fish
+│   │   ├── tka.fish
+│   │   └── tr.fish
+│   ├── dev/           # Development helpers
+│   │   ├── gitlog.fish
+│   │   ├── ports.fish
+│   │   └── extract.fish
+│   └── system/        # System utilities
+│       ├── backup.fish
+│       ├── clean.fish
+│       └── update.fish
+├── conf.d/            # Auto-loaded configs
+│   └── nvm.fish      # NVM configuration
+└── README.md         # This file
+```
+
+## 🧪 Testing Installation
+
+After installation, test the setup:
 
 ```fish
 # Start Fish shell
 fish
 
+# Test tmux functions
+t          # Should start tmux
+tl         # Should list sessions
+tn test    # Should create 'test' session
+
+# Test dev functions
+gitlog     # Should show git graph (in git repo)
+ports      # Should show listening ports
+
 # Test Python tools
-python --version  # Should show Python 3.11.4
-uv --version     # Should show uv 0.3.5
-conda --version  # Should show conda 23.5.2
+python --version   # Python 3.11.4
+conda --version    # conda 23.5.2
+uv --version      # uv 0.3.5
 
 # Test Node.js tools
-node --version   # Should show v18.20.3
-npm --version    # Should show 10.7.0
+node --version    # v18.20.3
+npm --version     # 10.7.0
 
-# Test environment variables
-echo $MODULAR_HOME    # Should show ~/.modular
-echo $MOJO_PYTHON_LIBRARY  # Should show path to Python library
+# Test editor
+nvim --version    # Should open Neovim
 ```
 
-## Troubleshooting
+## 🎨 Color Configuration
 
-### Tools not found in PATH
-If any tools are not accessible, ensure their paths are correctly set:
+Fish uses the `LS_COLORS` environment variable for file colors:
+- Directories: Blue
+- Executables: Green
+- Symlinks: Cyan
+- Archives: Red
 
-1. Check if the tool is installed:
-   ```fish
-   which python
-   which node
-   which uv
-   ```
+## 💡 Pro Tips
 
-2. Reload Fish configuration:
-   ```fish
-   source ~/.config/fish/config.fish
-   ```
+1. **Tab Completion**: Fish has amazing built-in completions
+2. **History Search**: Type partial command and use ↑/↓ arrows
+3. **Syntax Highlighting**: Commands turn red if invalid, green if valid
+4. **Autosuggestions**: Press → to accept grayed-out suggestions
+5. **Web Config**: Run `fish_config` to open web-based configuration
 
-3. For conda environments:
-   ```fish
-   conda activate base
-   ```
+## 🚨 Troubleshooting
 
-### NVM Node not found
-If Node.js installed via NVM is not found:
+### Functions Not Found
+```fish
+# Reload configuration
+source ~/.config/fish/config.fish
 
-1. Check NVM installation:
-   ```bash
-   ls ~/.nvm/versions/node/
-   ```
+# Check function location
+type function_name
 
-2. Update the path in `~/.config/fish/conf.d/nvm.fish` with your Node version
+# List all functions
+functions
+```
 
-### Mojo Python library issues
-If Mojo can't find Python library:
+### PATH Issues
+```fish
+# Check PATH
+echo $PATH
 
-1. Run the function manually:
-   ```fish
-   find_python_for_mojo
-   ```
+# Add to PATH in config.fish
+set -gx PATH "$HOME/bin" $PATH
+```
 
-2. Check the output and ensure the library exists
+### Tmux Functions Not Working
+```fish
+# Ensure tmux is installed
+which tmux
+
+# Check if functions exist
+ls ~/.config/fish/functions/t*.fish
+```
+
+### Python/Conda Not Found
+```fish
+# Re-initialize conda for fish
+conda init fish
+
+# Restart shell
+exec fish
+```
+
+### NVM/Node Not Found
+```fish
+# Check NVM installation
+ls ~/.nvm
+
+# Update NVM path in conf.d/nvm.fish
+```
+
+## 🔄 Updating
+
+To update the configuration:
+```bash
+cd ~/devenv
+git pull
+./fish_setup/install.sh
+```
+
+## ❌ Uninstall
+
+To remove Fish configuration:
+```bash
+# Remove config files
+rm -rf ~/.config/fish
+
+# Change default shell back to bash
+chsh -s /bin/bash
+
+# Remove from shells list
+sudo sed -i '/\/usr\/bin\/fish/d' /etc/shells
+```
+
+## 📚 Additional Resources
+
+- [Fish Documentation](https://fishshell.com/docs/current/)
+- [Fish Tutorial](https://fishshell.com/docs/current/tutorial.html)
+- [Tmux Integration Guide](../tmux_setup/docs/README.md)
+- [Nvchad Setup](../nvchad_setup/README.md)
 
 ## Author
+
 Abdullah Abdulwahab
 
-## Created
-$(date)
+## License
+
+MIT - Feel free to use and modify as needed.

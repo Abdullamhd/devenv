@@ -1,22 +1,29 @@
-# TMUX Fancy Setup for Fish Shell & Nvchad (WSL Optimized)
+# TMUX Configuration for Fish Shell & Nvchad (WSL Optimized)
 
 A powerful, minimal, and intuitive tmux configuration optimized for Fish shell, Nvchad users, and WSL/Windows Terminal.
 
-## Features
+## 🚀 Features
 
-### 🚀 WSL/Windows Terminal Compatible
-Uses `Ctrl+a` prefix for reliable operation in Windows Terminal.
+### WSL/Windows Terminal Compatible
+Uses `Ctrl+a` prefix for reliable operation in Windows Terminal with visual PREFIX indicator.
 
-### 🎯 Minimal & Memorable Commands
-- **Session Management**: `t`, `tn`, `tk`, `tl`, `ts`
+### Minimal & Memorable Commands
+- **Session Management**: `t`, `tn`, `tk`, `tl`, `ts`, `tinfo`, `tka`, `tr`
 - **Interactive Manager**: `tm` with fzf fuzzy finder
-- **Visual Prefix Indicator**: Shows "PREFIX" when Ctrl+a is pressed
+- **Visual Feedback**: Shows "PREFIX" in red when `Ctrl+a` is pressed
 
-### 🐟 Fish Shell Integration
-Custom fish functions for seamless tmux management.
+### Fish Shell Integration
+Complete set of fish functions for seamless tmux management.
 
-### ✨ Nvchad Compatible
+### Nvchad Compatible
 Vim-style navigation (`Ctrl+a` + `h/j/k/l`) that works perfectly with Nvchad.
+
+## 📦 Dependencies
+
+- **tmux** (version 3.0+)
+- **fish** shell
+- **fzf** (for fuzzy searching)
+- **Optional**: ripgrep (for better search performance)
 
 ## Installation
 
@@ -25,89 +32,182 @@ cd ~/devenv/tmux_setup
 ./install.sh
 ```
 
-## Key Bindings (Ctrl+a prefix)
+Or manually:
+```bash
+# Install dependencies
+sudo apt update
+sudo apt install -y tmux fzf
 
-**How to use:** Press `Ctrl+a` first (you'll see "PREFIX" in status bar), then press the command key.
+# Copy configuration
+cp tmux.conf ~/.tmux.conf
+cp scripts/tm ~/bin/tm
+chmod +x ~/bin/tm
+
+# Install fish functions
+cp functions/*.fish ~/.config/fish/functions/
+```
+
+## ⌨️ Complete Keybindings (Prefix: `Ctrl+a`)
+
+**How to use:** Press `Ctrl+a` first (you'll see "PREFIX" in status bar), release, then press the command key.
 
 ### Session Management
-| Key | Action |
-|-----|--------|
-| `Ctrl+a` `n` | New session |
-| `Ctrl+a` `X` | Kill current session |
-| `Ctrl+a` `s` | Switch sessions (list) |
-| `Ctrl+a` `S` | Switch sessions (fzf) |
-| `Ctrl+a` `d` | Detach from session |
-| `Ctrl+a` `r` | Rename session |
+| Key | Action | Description |
+|-----|--------|-------------|
+| `Ctrl+a` `n` | New session | Create new session in current directory |
+| `Ctrl+a` `X` | Kill session | Kill current session (with confirmation) |
+| `Ctrl+a` `s` | Session list | Interactive session switcher |
+| `Ctrl+a` `S` | Session fzf | Fuzzy search sessions |
+| `Ctrl+a` `d` | Detach | Leave tmux, keep running |
+| `Ctrl+a` `r` | Rename | Rename current session |
+| `Ctrl+a` `(` | Previous | Switch to previous session |
+| `Ctrl+a` `)` | Next | Switch to next session |
 
 ### Window Management
-| Key | Action |
-|-----|--------|
-| `Ctrl+a` `c` | New window |
-| `Ctrl+a` `x` | Kill window |
-| `Ctrl+a` `w` | Switch windows (list) |
-| `Ctrl+a` `,` | Rename window |
-| `Ctrl+a` `1-9` | Direct window switch |
-| `Ctrl+a` `Tab` | Toggle last window |
+| Key | Action | Description |
+|-----|--------|-------------|
+| `Ctrl+a` `c` | Create | New window |
+| `Ctrl+a` `x` | Kill | Kill current window |
+| `Ctrl+a` `w` | Windows | Interactive window list |
+| `Ctrl+a` `W` | Window fzf | Fuzzy search windows |
+| `Ctrl+a` `,` | Rename | Rename current window |
+| `Ctrl+a` `1-9` | Jump | Direct window switch |
+| `Ctrl+a` `Tab` | Toggle | Switch between last two windows |
 
 ### Pane Management
-| Key | Action |
-|-----|--------|
-| `Ctrl+a` `\|` | Split vertical |
-| `Ctrl+a` `-` | Split horizontal |
-| `Ctrl+a` `q` | Kill pane |
-| `Ctrl+a` `h/j/k/l` | Navigate panes |
-| `Ctrl+a` `H/J/K/L` | Resize panes |
-| `Ctrl+a` `z` | Zoom/unzoom pane |
+| Key | Action | Description |
+|-----|--------|-------------|
+| `Ctrl+a` `\|` | Split V | Split pane vertically |
+| `Ctrl+a` `-` | Split H | Split pane horizontally |
+| `Ctrl+a` `"` | Split H | Alternative horizontal split |
+| `Ctrl+a` `%` | Split V | Alternative vertical split |
+| `Ctrl+a` `q` | Kill | Kill current pane |
+| `Ctrl+a` `z` | Zoom | Toggle pane zoom |
+| `Ctrl+a` `;` | **Toggle** | **Switch between last two panes** |
+| `Ctrl+a` `!` | Break | Convert pane to window |
+| `Ctrl+a` `Space` | Layout | Cycle through layouts |
 
-## Fish Commands
+### Pane Navigation
+| Key | Action | Description |
+|-----|--------|-------------|
+| `Ctrl+a` `h` | Left | Move to left pane |
+| `Ctrl+a` `j` | Down | Move to down pane |
+| `Ctrl+a` `k` | Up | Move to up pane |
+| `Ctrl+a` `l` | Right | Move to right pane |
+| `Ctrl+a` `←↓↑→` | Arrow Nav | Navigate with arrow keys |
+| **Mouse Click** | Direct | Click pane to focus |
 
-| Command | Description |
-|---------|-------------|
-| `t` | Attach to tmux or create new session |
-| `tn [name]` | Create new named session |
-| `tk` | Kill session interactively |
-| `tl` | List all sessions |
-| `ts` | Switch sessions with fzf |
-| `tka` | Kill ALL sessions |
-| `tr [name]` | Rename current session |
-| `tm` | Interactive session manager |
+### Pane Resizing
+| Key | Action | Description |
+|-----|--------|-------------|
+| `Ctrl+a` `H` | Resize ← | Decrease width (hold Shift) |
+| `Ctrl+a` `J` | Resize ↓ | Increase height |
+| `Ctrl+a` `K` | Resize ↑ | Decrease height |
+| `Ctrl+a` `L` | Resize → | Increase width |
+| **Mouse Drag** | Resize | Drag pane borders |
 
-## Files Structure
+### Copy Mode
+| Key | Action | Description |
+|-----|--------|-------------|
+| `Ctrl+a` `v` | Enter | Enter copy mode |
+| `v` | Select | Start selection (in copy mode) |
+| `y` | Copy | Copy selection |
+| `q` | Exit | Exit copy mode |
+
+### Other Commands
+| Key | Action | Description |
+|-----|--------|-------------|
+| `Ctrl+a` `R` | Reload | Reload tmux configuration |
+| `Ctrl+a` `?` | Help | Show all keybindings |
+| `Ctrl+a` `/` | Search | Search keybindings |
+| `Ctrl+a` `Ctrl+a` | Send | Send Ctrl+a to application |
+
+## 🐟 Fish Shell Functions
+
+| Command | Description | Usage Example |
+|---------|-------------|---------------|
+| `t` | Smart attach/create session | `t` |
+| `tn` | Create new named session | `tn project` |
+| `tk` | Kill session with preview | `tk` or `tk session-name` |
+| `tl` | List all sessions | `tl` |
+| `ts` | Switch sessions with fzf | `ts` |
+| `tinfo` | **Detailed session overview** | `tinfo` |
+| `tka` | **Kill ALL sessions** | `tka` |
+| `tr` | **Rename current session** | `tr newname` |
+| `tm` | Interactive session manager | `tm` |
+
+## 📁 Directory Structure
 
 ```
 tmux_setup/
-├── install.sh          # Installer script
-├── tmux.conf          # Tmux configuration
-├── fish/
-│   └── tmux.fish      # Fish shell functions
+├── docs/               # Documentation
+│   ├── README.md      # This file
+│   ├── QUICK_COMMANDS.md
+│   ├── SESSION_MASTERY_GUIDE.md
+│   └── windows_terminal_fix.md
+├── functions/          # Enhanced fish functions
+│   ├── tk.fish        # Kill with preview
+│   ├── tinfo.fish     # Session info
+│   ├── tka.fish       # Kill all
+│   └── tr.fish        # Rename session
 ├── scripts/
 │   └── tm             # Session manager script
-└── README.md          # This file
+├── tmux.conf          # Main configuration
+└── install.sh         # Installer script
 ```
 
-## Tips
+## 🎨 Status Bar
 
-1. **Quick Start**: Just type `t` in terminal to start using tmux
-2. **Prefix Key**: Press `Ctrl+a` first, then the command key (you'll see "PREFIX" indicator)
-3. **Session Manager**: Use `tm` for interactive session management with preview
-4. **Mouse Support**: Click to select panes, drag to resize, scroll to navigate
-5. **WSL Users**: If Alt keys don't work, disable "Use Alt as menu key" in Windows Terminal settings
+The status bar shows:
+- **Left**: Session name with prefix indicator (shows "PREFIX" when `Ctrl+a` is pressed)
+- **Center**: Window list with active window highlighted
+- **Right**: Time and date
 
-## Troubleshooting
+## 💡 Pro Tips
 
-- **Commands not found**: Open a new terminal or run `source ~/.config/fish/config.fish`
-- **Keybindings not working**: Make sure you're using a terminal that supports Alt key combinations
+1. **Quick Session Toggle**: Use `Ctrl+a (` and `Ctrl+a )` to cycle through sessions
+2. **Pane Toggle**: Use `Ctrl+a ;` to quickly switch between two panes
+3. **Window Toggle**: Use `Ctrl+a Tab` to switch between last two windows
+4. **Mouse Mode**: Click to select panes, drag borders to resize
+5. **Zoom Focus**: Use `Ctrl+a z` to focus on one pane temporarily
+6. **Session Info**: Run `tinfo` to see detailed session/window/pane overview
+
+## 🔧 Customization
+
+Edit `~/.tmux.conf` to customize. Key sections:
+- **General Settings**: Lines 10-30 (colors, shell, history)
+- **Key Bindings**: Lines 45-120 (all shortcuts)
+- **Status Bar**: Lines 140-165 (appearance)
+- **Quick Access**: Lines 125-135 (Alt key shortcuts if supported)
+
+## 🚨 Troubleshooting
+
+### WSL/Windows Terminal Issues
+- **Alt keys not working**: Disable "Use Alt as menu key" in Windows Terminal settings
+- **Prefix not working**: Ensure you see "PREFIX" in red after pressing `Ctrl+a`
+
+### Common Issues
+- **Commands not found**: Run `source ~/.config/fish/config.fish`
 - **FZF not working**: Install with `sudo apt install fzf`
+- **Mouse not working**: Check if `set -g mouse on` is in config
+- **Sessions nested warning**: You're in tmux, use `Ctrl+a s` to switch
 
-## Customization
+## 📚 Additional Resources
 
-Edit `~/.tmux.conf` to customize settings. The configuration is well-commented for easy modification.
+- [Session Mastery Guide](SESSION_MASTERY_GUIDE.md) - Deep dive into sessions
+- [Quick Commands](QUICK_COMMANDS.md) - Quick reference card
+- [Windows Terminal Fix](windows_terminal_fix.md) - WSL-specific fixes
 
 ## Uninstall
 
-To remove the setup:
 ```bash
+# Remove configuration
 rm ~/.tmux.conf
 rm ~/bin/tm
-rm ~/.config/fish/functions/{t,tn,tk,tl,ts,tka,tr}.fish
+
+# Remove fish functions
+rm ~/.config/fish/functions/{t,tn,tk,tl,ts,tinfo,tka,tr}.fish
+
+# Kill all tmux sessions
+tmux kill-server
 ```
