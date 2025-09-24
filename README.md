@@ -54,6 +54,19 @@ cd devenv
 ./nvchad_setup/install.sh  # Nvchad only
 ```
 
+### Start Working with Tmux
+```bash
+# Start working
+t                   # Start tmux (attach or create)
+tn myproject        # Or create named session
+
+# Take a break
+Ctrl+a d            # Detach (keeps everything running!)
+
+# Come back later
+t                   # Reattach and continue where you left off
+```
+
 ## 📁 Repository Structure
 
 ```
@@ -93,18 +106,49 @@ devenv/
 
 ## ⌨️ Essential Keybindings
 
-### Tmux (Prefix: `Ctrl+a`)
-| Command | Action |
-|---------|--------|
-| `Ctrl+a` `c` | New window |
-| `Ctrl+a` `n` | New session |
-| `Ctrl+a` `s` | Switch sessions |
-| `Ctrl+a` `d` | Detach |
-| `Ctrl+a` `\|` | Split vertical |
-| `Ctrl+a` `-` | Split horizontal |
-| `Ctrl+a` `1-9` | Switch to window |
-| `Ctrl+a` `;` | Toggle last pane |
-| `Ctrl+a` `h/j/k/l` | Navigate panes |
+### Tmux Daily Commands (Prefix: `Ctrl+a`)
+
+#### Session Management
+| Command | Action | Usage |
+|---------|--------|-------|
+| `tn gemini` | Create named session | Start new project |
+| `Ctrl+a d` | **Detach session** | Leave tmux running |
+| `t` | Reattach to session | Come back to work |
+| `Ctrl+a s` | List/switch sessions | Navigate projects |
+| `Ctrl+a r` | Rename session | Organize work |
+| `Ctrl+a (` / `)` | Previous/Next session | Quick switch |
+| `Ctrl+a X` | Kill session | Clean up (capital X) |
+| `tk` | Kill session (interactive) | With preview |
+
+#### Window Management
+| Command | Action | Usage |
+|---------|--------|-------|
+| `Ctrl+a c` | New window | New workspace |
+| `Ctrl+a 1-9` | Jump to window | Direct access |
+| `Ctrl+a Tab` | Toggle last window | Quick back-and-forth |
+| `Ctrl+a ,` | Rename window | Label your work |
+| `Ctrl+a w` | List windows | See all windows |
+| `Ctrl+a x` | Kill window | Close window |
+
+#### Pane Management
+| Command | Action | Usage |
+|---------|--------|-------|
+| `Ctrl+a \|` | Split vertical | Side-by-side |
+| `Ctrl+a -` | Split horizontal | Top-bottom |
+| `Ctrl+a h/j/k/l` | Navigate panes | Move around |
+| `Ctrl+a ;` | Toggle last pane | Quick switch |
+| `Ctrl+a z` | Zoom/unzoom pane | Focus mode |
+| `Ctrl+a q` | Kill pane | Close split |
+| `Ctrl+a {` / `}` | Swap panes | Rearrange |
+| `Ctrl+a Space` | Cycle layouts | Change arrangement |
+
+#### Quick Actions
+| Command | Action | When to use |
+|---------|--------|-------------|
+| `Ctrl+a ?` | Show all shortcuts | When stuck |
+| `Ctrl+a R` | Reload config | After changes |
+| Mouse click | Select pane/window | Quick navigation |
+| `Ctrl+a n` | New session | While in tmux |
 
 ### Fish Functions
 | Command | Description |
@@ -131,6 +175,62 @@ devenv/
 | `Space ca` | Code actions |
 | `Space ch` | Cheatsheet |
 | `;` | Command mode |
+
+## 🎯 Most Used Daily Workflow
+
+### Morning Start
+```bash
+t                    # Attach to existing or create new
+tn work              # Or create specific work session
+tn personal          # Separate session for personal projects
+```
+
+### During Work
+```bash
+# Window management
+Ctrl+a c            # New window for different task
+Ctrl+a 1-9          # Jump between windows quickly
+Ctrl+a Tab          # Toggle between last two windows
+Ctrl+a ,            # Rename window to track what you're doing
+
+# Pane management
+Ctrl+a |            # Split vertical for side-by-side coding
+Ctrl+a -            # Split horizontal for logs/terminal
+Ctrl+a ;            # Quick toggle between panes
+Ctrl+a z            # Zoom current pane for focus
+
+# Session management
+Ctrl+a s            # See all sessions and switch
+Ctrl+a (            # Quick switch to previous session
+```
+
+### Taking Breaks
+```bash
+Ctrl+a d            # Detach - everything keeps running!
+# Close terminal, go for coffee, etc.
+t                   # When back, reattach instantly
+```
+
+### End of Day
+```bash
+tl                  # List all running sessions
+tk                  # Interactive kill sessions you don't need
+Ctrl+a d            # Or just detach and leave everything running for tomorrow
+```
+
+### Common Patterns
+```bash
+# Project switching
+tn frontend         # Create frontend session
+Ctrl+a d           # Detach
+tn backend         # Create backend session
+Ctrl+a s           # Switch between them anytime
+
+# Quick edits
+Ctrl+a c           # New window
+vim file.txt       # Edit
+Ctrl+a x           # Kill window when done
+```
 
 ## 🔧 Configuration Files
 
