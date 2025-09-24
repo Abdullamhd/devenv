@@ -33,6 +33,9 @@ export PYTHONUNBUFFERED=1
 # Colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# LS Colors - directories in pleasant green instead of blue
+export LS_COLORS='di=38;5;71:ln=1;36:so=1;35:pi=33:ex=1;32:bd=34;46:cd=34;43'
+
 # Man pages color
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'

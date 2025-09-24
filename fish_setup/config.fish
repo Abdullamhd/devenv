@@ -54,5 +54,5 @@ abbr -a py 'python3'
 abbr -a ipy 'ipython'
 
 # Colors for ls
-set -gx LS_COLORS 'di=1;34:ln=1;36:so=1;35:pi=33:ex=1;32:bd=34;46:cd=34;43'
+set -gx LS_COLORS 'di=38;5;71:ln=1;36:so=1;35:pi=33:ex=1;32:bd=34;46:cd=34;43'
 
