@@ -1,0 +1,163 @@
+#!/usr/bin/env fish
+# ╔══════════════════════════════════════════╗
+# ║     TMUX SESSION MANAGER (tm)             ║
+# ║     Interactive FZF-based manager          ║
+# ╚══════════════════════════════════════════╝
+
+# Check if tmux is installed
+if not command -q tmux
+    echo "Error: tmux is not installed"
+    exit 1
+end
+
+# Check if fzf is installed
+if not command -q fzf
+    echo "Error: fzf is not installed"
+    exit 1
+end
+
+function show_help
+    echo "
+╔══════════════════════════════════════════╗
+║     TMUX SESSION MANAGER                  ║
+╚══════════════════════════════════════════╝
+
+Usage: tm [command]
+
+Commands:
+    (no args)  Interactive session manager
+    new        Create new session
+    kill       Kill a session
+    attach     Attach to a session
+    list       List all sessions
+    help       Show this help
+
+Interactive Mode Actions:
+    Enter      Attach to session
+    Ctrl-n     Create new session
+    Ctrl-k     Kill selected session
+    Ctrl-r     Rename selected session
+    Ctrl-d     Detach from current session
+"
+end
+
+function create_new_session
+    read -P "Enter new session name (or press Enter for auto-name): " session_name
+    if test -z "$session_name"
+        set session_name (date +%Y%m%d-%H%M%S)
+    end
+
+    if tmux has-session -t $session_name 2>/dev/null
+        echo "Session '$session_name' already exists"
+        return 1
+    end
+
+    tmux new-session -d -s $session_name
+    echo "Created session: $session_name"
+
+    read -P "Attach to new session? (y/n): " attach_choice
+    if test "$attach_choice" = "y"
+        if test -n "$TMUX"
+            tmux switch-client -t $session_name
+        else
+            tmux attach-session -t $session_name
+        end
+    end
+end
+
+function kill_session
+    set sessions (tmux list-sessions -F "#{session_name}" 2>/dev/null)
+
+    if test (count $sessions) -eq 0
+        echo "No tmux sessions running"
+        return 1
+    end
+
+    set selected (echo $sessions | tr ' ' '\n' | fzf --reverse --header="Select session to kill:")
+
+    if test -n "$selected"
+        tmux kill-session -t $selected
+        echo "Killed session: $selected"
+    end
+end
+
+function attach_session
+    set sessions (tmux list-sessions -F "#{session_name}" 2>/dev/null)
+
+    if test (count $sessions) -eq 0
+        echo "No tmux sessions running"
+        read -P "Create new session? (y/n): " create_choice
+        if test "$create_choice" = "y"
+            create_new_session
+        end
+        return
+    end
+
+    set selected (echo $sessions | tr ' ' '\n' | fzf --reverse --header="Select session to attach:")
+
+    if test -n "$selected"
+        if test -n "$TMUX"
+            tmux switch-client -t $selected
+        else
+            tmux attach-session -t $selected
+        end
+    end
+end
+
+function list_sessions
+    tmux list-sessions 2>/dev/null || echo "No tmux sessions running"
+end
+
+function interactive_mode
+    # Check if any sessions exist
+    set sessions (tmux list-sessions 2>/dev/null)
+
+    if test -z "$sessions"
+        echo "No tmux sessions found."
+        read -P "Create new session? (y/n): " create_choice
+        if test "$create_choice" = "y"
+            create_new_session
+        end
+        return
+    end
+
+    # Create fzf interface with preview
+    set selected (tmux list-sessions -F "#{session_name}: #{session_windows} windows#{?session_attached, (attached),}" | \
+        fzf --reverse \
+            --header="Sessions | Enter:attach | Ctrl-n:new | Ctrl-k:kill | Ctrl-r:rename" \
+            --bind="ctrl-n:abort+execute(tm new)" \
+            --bind="ctrl-k:abort+execute(tm kill)" \
+            --preview="tmux list-windows -t {1}" \
+            --preview-window=right:40%)
+
+    if test -n "$selected"
+        set session_name (echo $selected | cut -d: -f1)
+        if test -n "$TMUX"
+            tmux switch-client -t $session_name
+        else
+            tmux attach-session -t $session_name
+        end
+    end
+end
+
+# Main script logic
+if test (count $argv) -eq 0
+    interactive_mode
+else
+    switch $argv[1]
+        case new
+            create_new_session
+        case kill
+            kill_session
+        case attach
+            attach_session
+        case list
+            list_sessions
+        case help --help -h
+            show_help
+        case '*'
+            echo "Unknown command: $argv[1]"
+            show_help
+            exit 1
+    end
+end
