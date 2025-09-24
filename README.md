@@ -24,18 +24,30 @@ Complete development environment setup for WSL/Linux with Fish shell, Tmux, and 
 - **ripgrep** - Better grep alternative (for searching)
 - **fd-find** - Better find alternative
 - **bat** - Better cat with syntax highlighting
-- **python3** - For Neovim plugins and LSP
-- **node/npm** - For many Neovim language servers
+- **python3** (3.8+) - For Neovim plugins and Python development
+- **pip3** - Python package manager
+- **node/npm** (18+) - For TypeScript/JavaScript language servers
 - **gcc/build-essential** - For compiling some tools
+
+### Python Development Tools (Auto-installed)
+- **pyright** - Fast Python language server with type checking
+- **ruff** - Ultra-fast Python linter/formatter (10-100x faster)
+- **black** - Python code formatter
+- **isort** - Import statement organizer
+- **mypy** - Static type checker
+- **debugpy** - Python debugger
 
 ### Install All Dependencies
 ```bash
 # Ubuntu/Debian
 sudo apt update
-sudo apt install -y tmux fish neovim fzf git curl wget ripgrep fd-find bat python3 nodejs npm build-essential
+sudo apt install -y tmux fish neovim fzf git curl wget ripgrep fd-find bat python3 python3-pip nodejs npm build-essential
 
 # macOS (with Homebrew)
 brew install tmux fish neovim fzf git ripgrep fd bat python node
+
+# Install Python development tools (optional - NvChad will auto-install via Mason)
+pip3 install --user pyright ruff mypy black isort debugpy
 ```
 
 ## 🚀 Quick Start
@@ -96,13 +108,47 @@ devenv/
 - Vim-style navigation
 - FZF integration for fuzzy searching
 
-### Nvchad
-- LSP support for multiple languages
-- Syntax highlighting with Treesitter
-- File explorer with Neo-tree
-- Git integration
-- Custom keybindings
-- Beautiful Catppuccin theme
+### Nvchad - Modern IDE Features
+- **LSP support** for Python, TypeScript, JavaScript, Rust, HTML/CSS
+- **Syntax highlighting** with Treesitter
+- **File explorer** with Neo-tree
+- **Git integration** with vim-fugitive
+- **Beautiful themes** with Catppuccin/GitHub Dark
+- **Auto-installation** of language servers via Mason
+
+#### 🐍 Python Development (Professional Setup)
+**Language Server**: Pyright (Microsoft's fast Python LSP)
+- **Type Checking**: Full type hint support with configurable strictness
+- **IntelliSense**: Smart completions with type information
+- **Auto-imports**: Automatically add missing imports
+- **Go to Definition**: Jump to function/class definitions (`gd`)
+- **Find References**: Find all usages (`gr`)
+- **Hover Documentation**: View docs and type info (`K`)
+- **Signature Help**: Function parameter hints while typing
+- **Code Actions**: Quick fixes and refactoring (`Space ca`)
+- **Virtual Environment Detection**: Auto-detects venv, conda environments
+
+**Linting & Formatting**: Ruff (10-100x faster than traditional tools)
+- **Real-time Error Detection**: Instant feedback on code issues
+- **Format on Save**: Auto-format Python files when saving
+- **Import Sorting**: Automatic import organization with isort
+- **Code Style**: Enforces PEP 8 and best practices
+- **Security Checks**: Identifies potential security issues
+- **Performance Hints**: Suggests performance improvements
+
+**Type Checking Levels**:
+- `standard` (default): Balance between strictness and flexibility
+- `strict`: Maximum type safety for production code
+- `basic`: Minimal checking for quick prototyping
+- `off`: Disable type checking
+
+#### 💻 TypeScript/JavaScript Development
+**Language Server**: typescript-language-server
+- Full TypeScript/JavaScript support
+- JSX/TSX support for React
+- Auto-imports and code actions
+- Type checking and IntelliSense
+- Format with Prettier
 
 ## ⌨️ Essential Keybindings
 
@@ -164,17 +210,50 @@ devenv/
 | `ports` | Show listening ports |
 
 ### Nvchad (Leader: Space)
-| Keybinding | Action |
-|------------|--------|
-| `Space ff` | Find files |
-| `Space fw` | Live grep |
-| `Space fb` | Browse buffers |
-| `Ctrl+n` | File tree toggle |
-| `gd` | Go to definition |
-| `K` | Hover docs |
-| `Space ca` | Code actions |
-| `Space ch` | Cheatsheet |
-| `;` | Command mode |
+
+#### General Navigation
+| Keybinding | Action | Description |
+|------------|--------|-------------|
+| `Space ff` | Find files | Fuzzy file search |
+| `Space fw` | Live grep | Search text in all files |
+| `Space fb` | Browse buffers | Switch between open files |
+| `Ctrl+n` | File tree toggle | Show/hide file explorer |
+| `Tab` | Next buffer | Cycle through open files |
+| `Shift+Tab` | Previous buffer | Cycle backwards |
+| `;` | Command mode | Quick command entry |
+| `Space ch` | Cheatsheet | Show all keybindings |
+
+#### Code Navigation (Works for Python, TypeScript, etc.)
+| Keybinding | Action | Description |
+|------------|--------|-------------|
+| `gd` | Go to definition | Jump to function/class definition |
+| `gr` | Go to references | Find all usages |
+| `gI` | Go to implementation | Jump to implementation |
+| `gt` | Go to type definition | Jump to type definition |
+| `K` | Hover documentation | Show docs/type info |
+| `[d` | Previous diagnostic | Jump to previous error/warning |
+| `]d` | Next diagnostic | Jump to next error/warning |
+| `Space D` | Type definition | Show type in floating window |
+| `Space ra` | Rename symbol | Rename across project |
+
+#### Code Actions & Formatting
+| Keybinding | Action | Description |
+|------------|--------|-------------|
+| `Space ca` | Code actions | Quick fixes, refactoring |
+| `Space fm` | Format file | Format current file |
+| `Space /` | Toggle comment | Comment/uncomment lines |
+| `gcc` | Comment line | Toggle line comment |
+| `gc` (visual) | Comment selection | Toggle selected lines |
+
+#### Python-Specific Features
+| Feature | Usage | Example |
+|---------|-------|---------|
+| Type hints | Hover over variables | `K` on any variable shows type |
+| Auto-import | Start typing class name | Pyright suggests imports |
+| Format on save | Just save the file | Ruff formats automatically |
+| Virtual env | Open project with venv | Auto-detects and uses venv |
+| Type checking | Real-time as you type | Errors shown inline |
+| Docstrings | Type `"""` after function | Auto-complete docstring template |
 
 ## 🎯 Most Used Daily Workflow
 
@@ -218,6 +297,59 @@ tk                  # Interactive kill sessions you don't need
 Ctrl+a d            # Or just detach and leave everything running for tomorrow
 ```
 
+### Python Development Workflow
+
+#### Starting a Python Project
+```bash
+# Create tmux session for your project
+tn myproject
+
+# Open Python file in Neovim
+nvim app.py
+```
+
+#### While Coding in Neovim
+```python
+# Type hints are fully supported
+def calculate_total(items: list[float]) -> float:
+    # Press K here to see function documentation
+    return sum(items)
+
+# Start typing a class name for auto-import
+# Type: Diction... and Pyright suggests: from typing import Dict
+
+class User:
+    def __init__(self, name: str, age: int):
+        self.name = name  # Hover with K shows type: str
+        self.age = age    # Shows type: int
+
+    def get_info(self) -> dict:
+        # Press Space ca for code actions (add type hints, etc.)
+        return {"name": self.name, "age": self.age}
+
+# Errors show immediately
+user = User("Alice", "30")  # Error: age expects int, got str
+
+# Press [d to jump to the error
+# Press Space ca to see quick fixes
+```
+
+#### Common Python LSP Commands
+```vim
+:Mason                    # Open Mason to manage language servers
+:LspInfo                  # Check if Pyright is running
+:LspRestart              # Restart language server if needed
+```
+
+#### Virtual Environment Support
+```bash
+# Pyright automatically detects virtual environments
+cd myproject
+python -m venv venv
+source venv/bin/activate  # or 'venv\Scripts\activate' on Windows
+nvim main.py              # Pyright uses the venv automatically
+```
+
 ### Common Patterns
 ```bash
 # Project switching
@@ -258,12 +390,70 @@ Ctrl+a x           # Kill window when done
 - Curl/Wget
 - Internet connection for package installation
 
-## 💡 Tips
+## 💡 Tips & Troubleshooting
 
+### General Tips
 1. **First Time**: Run `t` to start tmux after installation
 2. **WSL Users**: Check Windows Terminal settings for Alt key support
 3. **Updates**: Pull latest changes and re-run installers
 4. **Backups**: Installers create backups before modifying configs
+
+### Python Development Troubleshooting
+
+#### Language Server Not Working
+```bash
+# Check if Pyright is installed
+which pyright
+
+# In Neovim, check LSP status
+:LspInfo
+:Mason  # Check if pyright is installed
+
+# Manually install if needed
+pip3 install --user pyright ruff
+```
+
+#### Type Hints Not Showing
+```vim
+# Check LSP is attached to buffer
+:LspInfo
+
+# Restart LSP
+:LspRestart
+
+# Check Python version (needs 3.8+)
+:!python3 --version
+```
+
+#### Format on Save Not Working
+```vim
+# Check conform.nvim setup
+:ConformInfo
+
+# Manually format
+:lua require("conform").format()
+
+# Disable format on save if needed
+:let g:disable_autoformat = 1
+```
+
+#### Virtual Environment Issues
+```bash
+# Ensure venv is activated before opening Neovim
+source venv/bin/activate
+nvim file.py
+
+# Or specify Python path in Neovim
+:LspStop
+:LspStart pyright
+```
+
+#### Performance Issues
+```vim
+# Switch to basic type checking if slow
+# Edit ~/.config/nvim/lua/configs/lspconfig.lua
+# Change typeCheckingMode from "standard" to "basic"
+```
 
 ## 🤝 Contributing
 
