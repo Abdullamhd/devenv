@@ -1,22 +1,22 @@
-# TMUX Fancy Setup for Fish Shell & Nvchad
+# TMUX Fancy Setup for Fish Shell & Nvchad (WSL Optimized)
 
-A powerful, minimal, and intuitive tmux configuration optimized for Fish shell and Nvchad users.
+A powerful, minimal, and intuitive tmux configuration optimized for Fish shell, Nvchad users, and WSL/Windows Terminal.
 
 ## Features
 
-### 🚀 No Prefix Required!
-All commands use `Alt` key - no need to remember prefix combinations.
+### 🚀 WSL/Windows Terminal Compatible
+Uses `Ctrl+a` prefix for reliable operation in Windows Terminal.
 
 ### 🎯 Minimal & Memorable Commands
 - **Session Management**: `t`, `tn`, `tk`, `tl`, `ts`
 - **Interactive Manager**: `tm` with fzf fuzzy finder
-- **Direct Navigation**: `Alt+1-9` for instant window switching
+- **Visual Prefix Indicator**: Shows "PREFIX" when Ctrl+a is pressed
 
 ### 🐟 Fish Shell Integration
 Custom fish functions for seamless tmux management.
 
 ### ✨ Nvchad Compatible
-Vim-style navigation (`Alt+h/j/k/l`) that works perfectly with Nvchad.
+Vim-style navigation (`Ctrl+a` + `h/j/k/l`) that works perfectly with Nvchad.
 
 ## Installation
 
@@ -25,36 +25,39 @@ cd ~/devenv/tmux_setup
 ./install.sh
 ```
 
-## Key Bindings
+## Key Bindings (Ctrl+a prefix)
 
-### Session Management (Alt + key)
+**How to use:** Press `Ctrl+a` first (you'll see "PREFIX" in status bar), then press the command key.
+
+### Session Management
 | Key | Action |
 |-----|--------|
-| `Alt+n` | New session |
-| `Alt+k` | Kill current session |
-| `Alt+s` | Switch sessions (fzf) |
-| `Alt+d` | Detach from session |
-| `Alt+r` | Rename session |
+| `Ctrl+a` `n` | New session |
+| `Ctrl+a` `X` | Kill current session |
+| `Ctrl+a` `s` | Switch sessions (list) |
+| `Ctrl+a` `S` | Switch sessions (fzf) |
+| `Ctrl+a` `d` | Detach from session |
+| `Ctrl+a` `r` | Rename session |
 
 ### Window Management
 | Key | Action |
 |-----|--------|
-| `Alt+c` | New window |
-| `Alt+q` | Kill window |
-| `Alt+w` | Switch windows (fzf) |
-| `Alt+,` | Rename window |
-| `Alt+1-9` | Direct window switch |
-| `Alt+←/→` | Previous/Next window |
+| `Ctrl+a` `c` | New window |
+| `Ctrl+a` `x` | Kill window |
+| `Ctrl+a` `w` | Switch windows (list) |
+| `Ctrl+a` `,` | Rename window |
+| `Ctrl+a` `1-9` | Direct window switch |
+| `Ctrl+a` `Tab` | Toggle last window |
 
 ### Pane Management
 | Key | Action |
 |-----|--------|
-| `Alt+Enter` | Split horizontal |
-| `Alt+\` | Split vertical |
-| `Alt+x` | Kill pane |
-| `Alt+h/j/k/l` | Navigate panes |
-| `Alt+H/J/K/L` | Resize panes |
-| `Alt+z` | Zoom/unzoom pane |
+| `Ctrl+a` `\|` | Split vertical |
+| `Ctrl+a` `-` | Split horizontal |
+| `Ctrl+a` `q` | Kill pane |
+| `Ctrl+a` `h/j/k/l` | Navigate panes |
+| `Ctrl+a` `H/J/K/L` | Resize panes |
+| `Ctrl+a` `z` | Zoom/unzoom pane |
 
 ## Fish Commands
 
@@ -85,9 +88,10 @@ tmux_setup/
 ## Tips
 
 1. **Quick Start**: Just type `t` in terminal to start using tmux
-2. **No Prefix**: All keybindings use Alt key - no prefix required!
+2. **Prefix Key**: Press `Ctrl+a` first, then the command key (you'll see "PREFIX" indicator)
 3. **Session Manager**: Use `tm` for interactive session management with preview
 4. **Mouse Support**: Click to select panes, drag to resize, scroll to navigate
+5. **WSL Users**: If Alt keys don't work, disable "Use Alt as menu key" in Windows Terminal settings
 
 ## Troubleshooting
 
