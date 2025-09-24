@@ -31,6 +31,13 @@ return {
         "typescript-language-server",
         "prettier",
         "stylua",
+        -- Python tools
+        "pyright",
+        "ruff",
+        "mypy",
+        "debugpy",
+        "black",
+        "isort",
       },
     },
   },
@@ -45,6 +52,8 @@ return {
           "html",
           "cssls",
           "tsserver",
+          "pyright",  -- Python language server
+          "ruff_lsp", -- Python linter/formatter
         },
         automatic_installation = true,
       })
