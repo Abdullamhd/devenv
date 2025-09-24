@@ -22,7 +22,38 @@ return {
   },
 
   {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "html-lsp",
+        "css-lsp",
+        "typescript-language-server",
+        "prettier",
+        "stylua",
+      },
+    },
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "lua_ls",
+          "html",
+          "cssls",
+          "tsserver",
+        },
+        automatic_installation = true,
+      })
+    end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
+    dependencies = { "williamboman/mason-lspconfig.nvim" },
     config = function()
       require "configs.lspconfig"
     end,
