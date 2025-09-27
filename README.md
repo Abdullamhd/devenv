@@ -73,7 +73,7 @@ t                   # Start tmux (attach or create)
 tn myproject        # Or create named session
 
 # Take a break
-Ctrl+a d            # Detach (keeps everything running!)
+Ctrl+b d            # Detach (keeps everything running!)
 
 # Come back later
 t                   # Reattach and continue where you left off
@@ -100,13 +100,13 @@ devenv/
 - Git abbreviations and helpers
 - Python/Conda environment support
 
-### Tmux
-- `Ctrl+a` prefix (WSL optimized)
-- Session management with `t`, `tn`, `tk`, `tl`, `ts`
-- Visual prefix indicator
-- Mouse support
-- Vim-style navigation
-- FZF integration for fuzzy searching
+### Tmux (Minimal Configuration)
+- Default `Ctrl+b` prefix (standard tmux keybindings)
+- Session management with Fish functions: `t`, `tn`, `tk`, `tl`, `ts`
+- Clean status bar with session info
+- Mouse support enabled
+- True color support
+- Minimal, stable configuration
 
 ### Nvchad - Modern IDE Features
 - **LSP support** for Python, TypeScript, JavaScript, Rust, HTML/CSS
@@ -152,49 +152,49 @@ devenv/
 
 ## ⌨️ Essential Keybindings
 
-### Tmux Daily Commands (Prefix: `Ctrl+a`)
+### Tmux Default Commands (Prefix: `Ctrl+b`)
 
 #### Session Management
 | Command | Action | Usage |
 |---------|--------|-------|
 | `tn gemini` | Create named session | Start new project |
-| `Ctrl+a d` | **Detach session** | Leave tmux running |
+| `Ctrl+b d` | **Detach session** | Leave tmux running |
 | `t` | Reattach to session | Come back to work |
-| `Ctrl+a s` | List/switch sessions | Navigate projects |
-| `Ctrl+a r` | Rename session | Organize work |
-| `Ctrl+a (` / `)` | Previous/Next session | Quick switch |
-| `Ctrl+a X` | Kill session | Clean up (capital X) |
+| `Ctrl+b s` | List/switch sessions | Navigate projects |
+| `Ctrl+b $` | Rename session | Organize work |
+| `Ctrl+b (` / `)` | Previous/Next session | Quick switch |
+| `Ctrl+b :kill-ses` | Kill session | Command mode |
 | `tk` | Kill session (interactive) | With preview |
 
 #### Window Management
 | Command | Action | Usage |
 |---------|--------|-------|
-| `Ctrl+a c` | New window | New workspace |
-| `Ctrl+a 1-9` | Jump to window | Direct access |
-| `Ctrl+a Tab` | Toggle last window | Quick back-and-forth |
-| `Ctrl+a ,` | Rename window | Label your work |
-| `Ctrl+a w` | List windows | See all windows |
-| `Ctrl+a x` | Kill window | Close window |
+| `Ctrl+b c` | New window | New workspace |
+| `Ctrl+b 0-9` | Jump to window | Direct access |
+| `Ctrl+b n/p` | Next/Previous window | Navigate windows |
+| `Ctrl+b ,` | Rename window | Label your work |
+| `Ctrl+b w` | List windows | See all windows |
+| `Ctrl+b &` | Kill window | Close window |
 
 #### Pane Management
 | Command | Action | Usage |
 |---------|--------|-------|
-| `Ctrl+a \|` | Split vertical | Side-by-side |
-| `Ctrl+a -` | Split horizontal | Top-bottom |
-| `Ctrl+a h/j/k/l` | Navigate panes | Move around |
-| `Ctrl+a ;` | Toggle last pane | Quick switch |
-| `Ctrl+a z` | Zoom/unzoom pane | Focus mode |
-| `Ctrl+a q` | Kill pane | Close split |
-| `Ctrl+a {` / `}` | Swap panes | Rearrange |
-| `Ctrl+a Space` | Cycle layouts | Change arrangement |
+| `Ctrl+b %` | Split horizontal | Side-by-side |
+| `Ctrl+b "` | Split vertical | Top-bottom |
+| `Ctrl+b arrows` | Navigate panes | Move around |
+| `Ctrl+b o` | Next pane | Cycle through |
+| `Ctrl+b z` | Zoom/unzoom pane | Focus mode |
+| `Ctrl+b x` | Kill pane | Close split |
+| `Ctrl+b {` / `}` | Swap panes | Rearrange |
+| `Ctrl+b Space` | Cycle layouts | Change arrangement |
 
 #### Quick Actions
 | Command | Action | When to use |
 |---------|--------|-------------|
-| `Ctrl+a ?` | Show all shortcuts | When stuck |
-| `Ctrl+a R` | Reload config | After changes |
+| `Ctrl+b ?` | Show all shortcuts | When stuck |
+| `Ctrl+b :source ~/.tmux.conf` | Reload config | Run command |
 | Mouse click | Select pane/window | Quick navigation |
-| `Ctrl+a n` | New session | While in tmux |
+| `Ctrl+b [` | Copy mode | Scroll/copy |
 
 ### Fish Functions
 | Command | Description |
@@ -267,25 +267,25 @@ tn personal          # Separate session for personal projects
 ### During Work
 ```bash
 # Window management
-Ctrl+a c            # New window for different task
-Ctrl+a 1-9          # Jump between windows quickly
-Ctrl+a Tab          # Toggle between last two windows
-Ctrl+a ,            # Rename window to track what you're doing
+Ctrl+b c            # New window for different task
+Ctrl+b 0-9          # Jump between windows by number
+Ctrl+b n/p          # Next/previous window
+Ctrl+b ,            # Rename window to track what you're doing
 
 # Pane management
-Ctrl+a |            # Split vertical for side-by-side coding
-Ctrl+a -            # Split horizontal for logs/terminal
-Ctrl+a ;            # Quick toggle between panes
-Ctrl+a z            # Zoom current pane for focus
+Ctrl+b %            # Split horizontal for side-by-side
+Ctrl+b "            # Split vertical for logs/terminal
+Ctrl+b o            # Cycle between panes
+Ctrl+b z            # Zoom current pane for focus
 
 # Session management
-Ctrl+a s            # See all sessions and switch
-Ctrl+a (            # Quick switch to previous session
+Ctrl+b s            # See all sessions and switch
+Ctrl+b (            # Quick switch to previous session
 ```
 
 ### Taking Breaks
 ```bash
-Ctrl+a d            # Detach - everything keeps running!
+Ctrl+b d            # Detach - everything keeps running!
 # Close terminal, go for coffee, etc.
 t                   # When back, reattach instantly
 ```
@@ -294,7 +294,7 @@ t                   # When back, reattach instantly
 ```bash
 tl                  # List all running sessions
 tk                  # Interactive kill sessions you don't need
-Ctrl+a d            # Or just detach and leave everything running for tomorrow
+Ctrl+b d            # Or just detach and leave everything running for tomorrow
 ```
 
 ### Python Development Workflow
@@ -354,14 +354,14 @@ nvim main.py              # Pyright uses the venv automatically
 ```bash
 # Project switching
 tn frontend         # Create frontend session
-Ctrl+a d           # Detach
+Ctrl+b d           # Detach
 tn backend         # Create backend session
-Ctrl+a s           # Switch between them anytime
+Ctrl+b s           # Switch between them anytime
 
 # Quick edits
-Ctrl+a c           # New window
+Ctrl+b c           # New window
 vim file.txt       # Edit
-Ctrl+a x           # Kill window when done
+Ctrl+b x           # Kill window when done
 ```
 
 ## 🔧 Configuration Files
