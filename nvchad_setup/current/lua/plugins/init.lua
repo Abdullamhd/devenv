@@ -23,23 +23,9 @@ return {
 
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "html-lsp",
-        "css-lsp",
-        "typescript-language-server",
-        "prettier",
-        "stylua",
-        -- Python tools
-        "pyright",
-        "ruff",
-        "mypy",
-        "debugpy",
-        "black",
-        "isort",
-      },
-    },
+    config = function()
+      require("mason").setup()
+    end,
   },
 
   {
