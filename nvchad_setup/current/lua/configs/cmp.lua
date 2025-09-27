@@ -90,13 +90,12 @@ local options = {
       "s",
     }),
   },
-  sources = {
-    { name = "luasnip" },
-    { name = "nvim_lsp" },
-    { name = "buffer" },
-    { name = "nvim_lua" },
-    { name = "path" },
-  },
+  sources = cmp.config.sources({
+    { name = "nvim_lsp", priority = 1000 },
+    { name = "luasnip", priority = 750 },
+    { name = "buffer", priority = 500 },
+    { name = "path", priority = 250 },
+  }),
 }
 
 cmp.setup(options)

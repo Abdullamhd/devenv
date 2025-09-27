@@ -7,6 +7,12 @@ local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
 
+-- Fix capabilities for nvim-cmp
+local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if has_cmp then
+  capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+end
+
 -- Pyright (Python Language Server)
 lspconfig.pyright.setup {
   on_attach = function(client, bufnr)
