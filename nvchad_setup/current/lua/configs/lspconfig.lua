@@ -74,26 +74,17 @@ lspconfig.pyright.setup {
   end,
 }
 
--- Ruff (Fast Python Linter)
-lspconfig.ruff_lsp.setup {
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    -- Ruff can handle formatting
-    client.server_capabilities.documentFormattingProvider = true
-    client.server_capabilities.documentRangeFormattingProvider = true
-  end,
-  capabilities = capabilities,
-  init_options = {
-    settings = {
-      -- Ruff settings
-      args = {
-        "--line-length=88",  -- Black's default
-        "--select=E,F,W,C90,I,N,D,UP,YTT,ANN,ASYNC,S,BLE,B,A,COM,C4,DTZ,T10,EM,FA,ISC,ICN,LOG,G,INP,PIE,PT,Q,RSE,RET,SLOT,SIM,TID,TCH,INT,ARG,PTH,TD,FIX,ERA,PD,PGH,PL,TRY,FLY,NPY,PERF,FURB,RUF",
-        "--ignore=E501,E203,E266,D100,D101,D102,D103,D104,D105,D106,D107",
-      },
-    },
-  },
-}
+-- Ruff (Fast Python Linter) - Optional, can be enabled if needed
+-- Note: Ruff can be used via command line for linting/formatting
+-- Uncomment below to enable Ruff LSP if desired
+-- lspconfig.ruff_lsp.setup {
+--   on_attach = function(client, bufnr)
+--     on_attach(client, bufnr)
+--     client.server_capabilities.documentFormattingProvider = true
+--     client.server_capabilities.documentRangeFormattingProvider = true
+--   end,
+--   capabilities = capabilities,
+-- }
 
 lspconfig.rust_analyzer.setup({
   on_attach = function(client, bufnr)
@@ -130,7 +121,7 @@ local function organize_imports()
   vim.lsp.buf.execute_command(params)
 end
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
   end,

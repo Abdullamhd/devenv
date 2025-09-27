@@ -51,9 +51,8 @@ return {
           "lua_ls",
           "html",
           "cssls",
-          "tsserver",
+          "ts_ls",    -- TypeScript/JavaScript language server
           "pyright",  -- Python language server
-          "ruff_lsp", -- Python linter/formatter
         },
         automatic_installation = true,
       })
