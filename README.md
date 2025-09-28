@@ -44,24 +44,27 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 | `cw` | Change to word end | Quick rename |
 | `viw` | Select word | Quick selection |
 
-### Tmux Essentials
-| Key | Action |
-|-----|--------|
-| `t` | Attach/create session |
-| `tn project` | New named session |
-| `Ctrl+b d` | Detach (keep running) |
-| `Ctrl+b z` | **Zoom pane toggle** |
-| `Ctrl+b %` | Split horizontal |
-| `Ctrl+b "` | Split vertical |
-| `Ctrl+b arrows` | Navigate panes |
-| `Ctrl+b o` | Cycle through panes |
-| `Ctrl+b q` | Show pane numbers (jump) |
-| `Ctrl+b c` | New window |
-| `Ctrl+b l` | Toggle last two windows |
-| `Ctrl+b 0-9` | Jump to window |
-| `Ctrl+b n/p` | Next/prev window |
-| `Ctrl+b w` | List all windows |
-| `Ctrl+b s` | Switch sessions |
+### Tmux - Session/Window/Pane
+| Category | Key | Action |
+|----------|-----|--------|
+| **Session** | `t` | Attach/create session |
+| | `tn name` | New named session |
+| | `Ctrl+b d` | Detach (keep running) |
+| | `Ctrl+b s` | List/switch sessions |
+| | `Ctrl+b $` | Rename session |
+| **Window** | `Ctrl+b c` | New window |
+| | `Ctrl+b 0-9` | Jump to window |
+| | `Ctrl+b n/p` | Next/prev window |
+| | `Ctrl+b l` | Last window toggle |
+| | `Ctrl+b w` | List windows |
+| | `Ctrl+b ,` | Rename window |
+| **Pane** | `Ctrl+b %` | Split horizontal |
+| | `Ctrl+b "` | Split vertical |
+| | `Ctrl+b z` | **Zoom toggle** |
+| | `Ctrl+b arrows` | Navigate panes |
+| | `Ctrl+b o` | Cycle panes |
+| | `Ctrl+b q` | Show numbers |
+| | `Ctrl+b x` | Kill pane |
 
 ## ⚡ Frequent Use (15% of your time)
 
@@ -80,18 +83,6 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 |-----|--------|
 | `Ctrl+h/j/k/l` | Navigate splits |
 | `Space x` | Close buffer |
-
-### Tmux Advanced
-| Key | Action |
-|-----|--------|
-| `Ctrl+b x` | Kill pane |
-| `Ctrl+b &` | Kill window |
-| `Ctrl+b ,` | Rename window |
-| `Ctrl+b !` | Break pane to window |
-| `Ctrl+b Space` | Toggle pane layouts |
-| `Ctrl+b {/}` | Swap panes |
-| `Ctrl+b Alt+arrows` | Resize pane (5 cells) |
-| `Ctrl+b Ctrl+arrows` | Resize pane (1 cell) |
 
 ### Quick Vim Recipes
 ```vim
