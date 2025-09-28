@@ -155,6 +155,63 @@ While in NvimTree:
 | `J` | Move down | Move selection down |
 | `K` | Move up | Move selection up |
 
+## ⚡ Vim Motion Recipes (Quick Refactoring)
+
+Common code transformations in seconds using Vim motions:
+
+### 1. Change Class/Function Name
+```vim
+/BadClass    # Search for name
+ciw          # Change inner word
+NewName      # Type replacement
+```
+
+### 2. Fix Function Parameters
+```vim
+f(           # Find opening paren
+ci(          # Change inside parentheses
+param1, param2  # Type new params
+```
+
+### 3. Add Prefix to Multiple Lines
+```vim
+I            # Insert at line start
+self.        # Type prefix
+<Esc>j.      # Next line, repeat (.)
+j.           # Keep repeating with j.
+```
+
+### 4. Rename Method/Variable
+```vim
+/oldName     # Search
+cw           # Change word
+newName      # Type new name
+n.           # Next occurrence, repeat
+```
+
+### 5. Fix String Content
+```vim
+ci'          # Change inside single quotes
+ci"          # Change inside double quotes
+ci`          # Change inside backticks
+f"i          # Find quote, insert before
+```
+
+### Quick Motion Combinations
+| Motion | Action | Use Case |
+|--------|--------|----------|
+| `ciw` | Change inner word | Rename variables |
+| `ci(` | Change inside parens | Fix parameters |
+| `ci{` | Change inside braces | Replace block content |
+| `ci[` | Change inside brackets | Fix arrays |
+| `ci"` | Change inside quotes | Edit strings |
+| `viw` | Select inner word | Quick selection |
+| `f` + char | Find character | Jump to specific char |
+| `.` | Repeat last change | Apply same edit multiple times |
+| `n` | Next search match | Jump through occurrences |
+| `I` | Insert at line start | Add prefixes |
+| `A` | Append at line end | Add suffixes |
+
 ## 🔧 Utility
 
 | Keybinding | Action | Description |

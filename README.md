@@ -183,10 +183,14 @@ devenv/
 | `Ctrl+b "` | Split vertical | Top-bottom |
 | `Ctrl+b arrows` | Navigate panes | Move around |
 | `Ctrl+b o` | Next pane | Cycle through |
-| `Ctrl+b z` | Zoom/unzoom pane | Focus mode |
 | `Ctrl+b x` | Kill pane | Close split |
 | `Ctrl+b {` / `}` | Swap panes | Rearrange |
 | `Ctrl+b Space` | Cycle layouts | Change arrangement |
+
+##### Primary Method: Zoom (Toggle Fullscreen)
+| Command | Action | Usage |
+|---------|--------|-------|
+| `Ctrl+b z` | Toggle zoom on current pane | Enter/exit fullscreen mode for focused work |
 
 #### Quick Actions
 | Command | Action | When to use |
