@@ -54,8 +54,13 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 | `Ctrl+b %` | Split horizontal |
 | `Ctrl+b "` | Split vertical |
 | `Ctrl+b arrows` | Navigate panes |
+| `Ctrl+b o` | Cycle through panes |
+| `Ctrl+b q` | Show pane numbers (jump) |
 | `Ctrl+b c` | New window |
+| `Ctrl+b l` | Toggle last two windows |
 | `Ctrl+b 0-9` | Jump to window |
+| `Ctrl+b n/p` | Next/prev window |
+| `Ctrl+b w` | List all windows |
 | `Ctrl+b s` | Switch sessions |
 
 ## ⚡ Frequent Use (15% of your time)
@@ -75,9 +80,18 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 |-----|--------|
 | `Ctrl+h/j/k/l` | Navigate splits |
 | `Space x` | Close buffer |
-| `Ctrl+b o` | Next pane |
+
+### Tmux Advanced
+| Key | Action |
+|-----|--------|
 | `Ctrl+b x` | Kill pane |
-| `Ctrl+b n/p` | Next/prev window |
+| `Ctrl+b &` | Kill window |
+| `Ctrl+b ,` | Rename window |
+| `Ctrl+b !` | Break pane to window |
+| `Ctrl+b Space` | Toggle pane layouts |
+| `Ctrl+b {/}` | Swap panes |
+| `Ctrl+b Alt+arrows` | Resize pane (5 cells) |
+| `Ctrl+b Ctrl+arrows` | Resize pane (1 cell) |
 
 ### Quick Vim Recipes
 ```vim
