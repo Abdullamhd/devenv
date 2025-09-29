@@ -28,21 +28,65 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 | `Space fm` | Format file |
 | `Space ra` | Rename symbol |
 
-### Vim Motions - Quick Edits
-| Motion | Action | Example |
-|--------|--------|---------|
-| `ciw` | Change word | Rename variable |
-| `ci(` | Change in parens | Fix parameters |
-| `ci"` | Change in quotes | Edit string |
-| `ci{` | Change in braces | Replace block |
-| `f` + char | Jump to character | `f(` jump to paren |
-| `.` | Repeat last change | Apply same edit |
-| `n` | Next search match | Jump to next |
-| `I` | Insert at line start | Add prefix |
-| `A` | Append at line end | Add suffix |
-| `/text` | Search forward | Find in file |
-| `cw` | Change to word end | Quick rename |
-| `viw` | Select word | Quick selection |
+### Vim Motions - Edit/Move/Copy
+| Category | Motion | Action |
+|----------|--------|--------|
+| **Change** | `ciw` | Change word |
+| | `ci(` / `ci{` / `ci[` | Change inside parens/braces/brackets |
+| | `ci"` / `ci'` / `ci`` | Change inside quotes |
+| | `cw` | Change to word end |
+| | `caw` | Change word + space |
+| | `cap` | Change paragraph |
+| **Copy** | `yy` or `Y` | Copy line |
+| | `yiw` | Copy word |
+| | `yap` | Copy paragraph |
+| | `y$` | Copy to end of line |
+| | `"+y` | Copy to clipboard |
+| **Paste** | `p` | Paste after cursor |
+| | `P` | Paste before cursor |
+| | `"+p` | Paste from clipboard |
+| **Delete** | `dd` | Delete line |
+| | `diw` | Delete word |
+| | `daw` | Delete word + space |
+| | `d$` or `D` | Delete to end of line |
+| | `x` | Delete character |
+| **Move Lines** | `ddp` | Move line down |
+| | `ddkP` | Move line up |
+| | `V:m +1` | Visual move down |
+| | `V:m -2` | Visual move up |
+| **Swap** | `dawwP` | Swap words |
+| | `xp` | Swap characters |
+| | `ddp` | Swap lines down |
+| **Navigate** | `w` / `b` | Word forward/back |
+| | `e` | End of word |
+| | `0` / `$` | Line start/end |
+| | `gg` / `G` | File start/end |
+| | `{` / `}` | Paragraph up/down |
+| | `%` | Matching bracket |
+| | `f` + char | Find character forward |
+| | `F` + char | Find character backward |
+| | `Ctrl+d/u` | Half page down/up |
+| **Lines** | `J` | Join lines |
+| | `o` / `O` | New line below/above |
+| | `>>` / `<<` | Indent/unindent |
+| **Visual** | `v` | Visual mode |
+| | `V` | Visual line mode |
+| | `Ctrl+v` | Visual block mode |
+| | `gv` | Reselect last visual |
+| | `viw` | Select word |
+| | `vap` | Select paragraph |
+| **Undo/Redo** | `u` | Undo |
+| | `Ctrl+r` | Redo |
+| **Search** | `/text` | Search forward |
+| | `?text` | Search backward |
+| | `n` / `N` | Next/previous match |
+| | `*` / `#` | Search word under cursor |
+| **Insert** | `I` | Insert at line start |
+| | `A` | Append at line end |
+| | `a` | Append after cursor |
+| | `i` | Insert before cursor |
+| **Other** | `.` | Repeat last change |
+| | `~` | Toggle case |
 
 ### Tmux - Session/Window/Pane
 | Category | Key | Action |
