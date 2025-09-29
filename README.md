@@ -110,6 +110,44 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 | | `Ctrl+b q` | Show numbers |
 | | `Ctrl+b x` | Kill pane |
 
+### NvimTree - File Explorer
+| Category | Key | Action |
+|----------|-----|--------|
+| **Window Nav** | `Ctrl+n` | Toggle NvimTree |
+| | `Ctrl+h` | Move to left (NvimTree) |
+| | `Ctrl+l` | Move to right (file) |
+| | `Ctrl+j` | Move to window below |
+| | `Ctrl+k` | Move to window above |
+| **Navigate** | `j/k` | Move down/up |
+| | `Enter` or `o` | Open file/folder |
+| | `<BS>` | Close folder/go parent |
+| | `P` | Jump to parent folder |
+| | `/` | Search in tree |
+| | `H` | Toggle hidden files |
+| | `R` | Refresh tree |
+| **Files** | `a` | Create file/folder |
+| | `d` | Delete file |
+| | `r` | Rename file |
+| | `x` | Cut file |
+| | `c` | Copy file |
+| | `p` | Paste file |
+| **Open Modes** | `Enter` | Open file |
+| | `Tab` | Preview (no switch) |
+| | `Ctrl+v` | Open in vsplit |
+| | `Ctrl+x` | Open in hsplit |
+| | `Ctrl+t` | Open in new tab |
+| **Copy Paths** | `y` | Copy filename |
+| | `Y` | Copy relative path |
+| | `gy` | Copy absolute path |
+| **Folders** | `o` | Open folder |
+| | `O` | Open recursively |
+| | `<BS>` | Close folder |
+| | `E` | Expand all |
+| | `W` | Collapse all |
+| **Other** | `?` | Show help |
+| | `q` | Close tree |
+| | `I` | Toggle gitignore |
+
 ## ⚡ Frequent Use (15% of your time)
 
 ### LSP & Refactoring
@@ -122,11 +160,12 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 | `gt` | Go to type definition |
 | `Space q` | List all diagnostics |
 
-### Window & Split Management
+### Buffer & Split Management
 | Key | Action |
 |-----|--------|
-| `Ctrl+h/j/k/l` | Navigate splits |
 | `Space x` | Close buffer |
+| `Space sv` | Vertical split |
+| `Space sh` | Horizontal split |
 
 ### Quick Vim Recipes
 ```vim
@@ -168,15 +207,6 @@ ci' or ci" or ci`
 | `Enter` | Open selection |
 | `Ctrl+v` | Open in split |
 | `Esc` | Close |
-
-### File Tree (when focused)
-| Key | Action |
-|-----|--------|
-| `a` | Create file |
-| `d` | Delete |
-| `r` | Rename |
-| `x` | Cut |
-| `p` | Paste |
 
 ## 💡 Speed Tips
 
