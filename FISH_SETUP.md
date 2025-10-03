@@ -68,24 +68,38 @@ source ~/.config/fish/config.fish
 
 Or manually add to `~/.config/fish/config.fish`:
 
-```bash
+```fish
 # Disable welcome message
 set -g fish_greeting
 
+# Add miniconda3 tools to PATH (includes uv, python tools)
+if test -d ~/miniconda3/bin
+    fish_add_path -p ~/miniconda3/bin
+end
+
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # Initialize zoxide (smart cd replacement)
+    if command -v zoxide &> /dev/null
+        zoxide init fish | source
+    end
 end
 
 # Add Neovim to PATH
 if test -d /opt/nvim-linux64/bin
     fish_add_path -p /opt/nvim-linux64/bin
 end
+
+# Python alias
+alias python=python3
+alias pip=pip3
 ```
 
 Verify:
 ```bash
 which nvim    # Should show: /opt/nvim-linux64/bin/nvim
-which python3 # Should show: /usr/bin/python3
+which uv      # Should show: /home/abdullah/miniconda3/bin/uv
+which python  # Should show: python is /home/abdullah/miniconda3/bin/python3
+z --version   # Should show zoxide version
 ```
 
 ## Features

@@ -4,9 +4,9 @@
 # Disable welcome message
 set -g fish_greeting
 
-# Initialize conda for Fish (includes uv, conda, python tools)
-if test -f ~/miniconda3/bin/conda
-    eval ~/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# Add miniconda3 tools to PATH (includes uv, python tools)
+if test -d ~/miniconda3/bin
+    fish_add_path -p ~/miniconda3/bin
 end
 
 if status is-interactive
