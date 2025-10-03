@@ -6,6 +6,11 @@ set -g fish_greeting
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
+
+    # Initialize zoxide (smart cd replacement)
+    if command -v zoxide &> /dev/null
+        zoxide init fish | source
+    end
 end
 
 # Add Neovim to PATH
