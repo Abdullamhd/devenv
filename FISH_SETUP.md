@@ -57,11 +57,21 @@ fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/fun
 fish -c "fisher install PatrickF1/fzf.fish"
 ```
 
-### 6. Configure PATH for Neovim and Python
+### 6. Configure Fish Shell
 
-Add to `~/.config/fish/config.fish`:
+Copy the config file from this repo:
 
 ```bash
+cp fish_config/config.fish ~/.config/fish/config.fish
+source ~/.config/fish/config.fish
+```
+
+Or manually add to `~/.config/fish/config.fish`:
+
+```bash
+# Disable welcome message
+set -g fish_greeting
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -70,11 +80,6 @@ end
 if test -d /opt/nvim-linux64/bin
     fish_add_path -p /opt/nvim-linux64/bin
 end
-```
-
-Apply changes:
-```bash
-source ~/.config/fish/config.fish
 ```
 
 Verify:
