@@ -12,3 +12,7 @@ end
 if test -d /opt/nvim-linux64/bin
     fish_add_path -p /opt/nvim-linux64/bin
 end
+
+# Python alias (use python instead of python3)
+alias python=python3
+alias pip=pip3
