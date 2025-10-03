@@ -4,6 +4,11 @@
 # Disable welcome message
 set -g fish_greeting
 
+# Initialize conda for Fish (includes uv, conda, python tools)
+if test -f ~/miniconda3/bin/conda
+    eval ~/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
