@@ -57,6 +57,32 @@ fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/fun
 fish -c "fisher install PatrickF1/fzf.fish"
 ```
 
+### 6. Configure PATH for Neovim and Python
+
+Add to `~/.config/fish/config.fish`:
+
+```bash
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
+# Add Neovim to PATH
+if test -d /opt/nvim-linux64/bin
+    fish_add_path -p /opt/nvim-linux64/bin
+end
+```
+
+Apply changes:
+```bash
+source ~/.config/fish/config.fish
+```
+
+Verify:
+```bash
+which nvim    # Should show: /opt/nvim-linux64/bin/nvim
+which python3 # Should show: /usr/bin/python3
+```
+
 ## Features
 
 After setup, you'll have:
