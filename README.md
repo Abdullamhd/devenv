@@ -93,22 +93,22 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 |----------|-----|--------|
 | **Session** | `t` | Attach/create session |
 | | `tn name` | New named session |
-| | `Ctrl+b d` | Detach (keep running) |
-| | `Ctrl+b s` | List/switch sessions |
-| | `Ctrl+b $` | Rename session |
-| **Window** | `Ctrl+b c` | New window |
-| | `Ctrl+b 0-9` | Jump to window |
-| | `Ctrl+b n/p` | Next/prev window |
-| | `Ctrl+b l` | Last window toggle |
-| | `Ctrl+b w` | List windows |
-| | `Ctrl+b ,` | Rename window |
-| **Pane** | `Ctrl+b %` | Split horizontal |
-| | `Ctrl+b "` | Split vertical |
-| | `Ctrl+b z` | **Zoom toggle** |
-| | `Ctrl+b arrows` | Navigate panes |
-| | `Ctrl+b o` | Cycle panes |
-| | `Ctrl+b q` | Show numbers |
-| | `Ctrl+b x` | Kill pane |
+| | `Ctrl+a d` | Detach (keep running) |
+| | `Ctrl+a s` | List/switch sessions |
+| | `Ctrl+a $` | Rename session |
+| **Window** | `Ctrl+a c` | New window |
+| | `Ctrl+a 0-9` | Jump to window |
+| | `Ctrl+a n/p` | Next/prev window |
+| | `Ctrl+a l` | Last window toggle |
+| | `Ctrl+a w` | List windows |
+| | `Ctrl+a ,` | Rename window |
+| **Pane** | `Ctrl+a %` | Split horizontal |
+| | `Ctrl+a "` | Split vertical |
+| | `Ctrl+a z` | **Zoom toggle** |
+| | `Ctrl+a arrows` | Navigate panes |
+| | `Ctrl+a o` | Cycle panes |
+| | `Ctrl+a q` | Show numbers |
+| | `Ctrl+a x` | Kill pane |
 
 ### NvimTree - File Explorer
 | Category | Key | Action |
@@ -214,7 +214,7 @@ ci' or ci" or ci`
 ```bash
 t                  # Start working
 tn backend         # New project session
-Ctrl+b d          # Take a break
+Ctrl+a d          # Take a break
 t                  # Resume where you left
 ```
 
@@ -239,7 +239,7 @@ n.                # Keep going
 
 1. **Navigation**: `Space ff` (files), `Space fw` (search), `gd` (definition)
 2. **Editing**: `ciw` (change word), `ci(` (change params), `.` (repeat)
-3. **Tmux**: `Ctrl+b z` (zoom), `Ctrl+b d` (detach), `t` (reattach)
+3. **Tmux**: `Ctrl+a z` (zoom), `Ctrl+a d` (detach), `t` (reattach)
 4. **Save/Format**: `Ctrl+s` (save), `Space fm` (format)
 5. **Errors**: `[d` / `]d` (navigate), `Space ca` (fix)
 
