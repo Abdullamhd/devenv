@@ -88,6 +88,37 @@ Quick access to most-used shortcuts for Python/JavaScript development with Tmux 
 | **Other** | `.` | Repeat last change |
 | | `~` | Toggle case |
 
+### Insert Mode Motions - Built-in Solutions
+| Key | Action |
+|-----|--------|
+| `Ctrl-o h` | Move one character left (stay in insert mode) |
+| `Ctrl-o a` | Move one character forward (stay in insert mode) |
+| `Ctrl-o w` | Move forward one word (stay in insert mode) |
+| `Ctrl-o b` | Move backward one word (stay in insert mode) |
+| `Ctrl-o 0` | Move to line start (stay in insert mode) |
+| `Ctrl-o $` | Move to line end (stay in insert mode) |
+
+**Tip**: `Ctrl-o` lets you execute a single normal mode command while staying in insert mode.
+
+### Efficient Jumplist Navigation
+| Key | Action |
+|-----|--------|
+| `Ctrl-o` | Jump backward (previous location) |
+| `Ctrl-i` | Jump forward (next location) |
+| `:jumps` | View jumplist history |
+| `g;` | Jump to previous change location |
+| `g,` | Jump to next change location |
+| `:changes` | View change list |
+| `m{a-z}` | Set mark (e.g., `ma` sets mark 'a') |
+| `'{a-z}` | Jump to mark (e.g., `'a` jumps to mark 'a') |
+| `` ` `` | Jump to exact mark position |
+
+**Use Cases**:
+- After `gd` (go to definition), use `Ctrl-o` to return to your original location
+- Navigate between multiple files: `Ctrl-o`/`Ctrl-i` remembers cross-file jumps
+- Set marks before big jumps: `ma` → do work → `'a` to return
+- Review edit history: `g;` jumps through your change timeline
+
 ### Tmux - Session/Window/Pane
 | Category | Key | Action |
 |----------|-----|--------|
